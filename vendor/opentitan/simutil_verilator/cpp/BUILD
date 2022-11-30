@@ -15,6 +15,10 @@ cc_library(
         "TOPLEVEL_NAME=top",
         "VM_TRACE_FMT_FST",
         "VL_USER_STOP",
+        "VL_THREADED",
+    ],
+    includes = [
+        "./"
     ],
     deps = [
         "@verilator_v4.224//:svdpi",

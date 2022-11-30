@@ -43,11 +43,18 @@ nonhermetic_repo(name = "nonhermetic")
 # Verilator Rules
 # --------------------------------------------------------------------------------
 
+# http_archive(
+#     name = "rules_verilator",
+#     strip_prefix = "rules_verilator-0.1-rc5",
+#     sha256 = "0b40bd8359cb9e4bff964e2527283f1687d0b4c9dd179bb832e7c9fc0c472a1d",
+#     url = "https://github.com/shareefj/rules_verilator/archive/v0.1-rc5.zip",
+# )
+
 http_archive(
     name = "rules_verilator",
-    strip_prefix = "rules_verilator-0.1-rc5",
-    sha256 = "0b40bd8359cb9e4bff964e2527283f1687d0b4c9dd179bb832e7c9fc0c472a1d",
-    url = "https://github.com/shareefj/rules_verilator/archive/v0.1-rc5.zip",
+    strip_prefix = "rules_verilator-0.1-rc5-verilated_threads",
+    sha256 = "7ba73d23740f75f31979130a4d1b9f8bed37e848f807b67d666d4aa7ee1cd716",
+    url = "https://github.com/shareefj/rules_verilator/archive/refs/tags/v0.1-rc5-verilated_threads.zip",
 )
 
 load(

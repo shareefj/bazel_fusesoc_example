@@ -67,5 +67,5 @@ cc_library(
     srcs = [":verilator_archive"],
     hdrs = [":verilator_headers"],
     linkstatic=1,
-    includes = ["bazel-bin/build.verilator_build"]
+    includes = ["build.verilator_build/archive-verilator"]
 )

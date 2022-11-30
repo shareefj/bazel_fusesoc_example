@@ -11,5 +11,4 @@ cc_binary(
         "//:verilator_cc_lib",
         "//vendor/opentitan/simutil_verilator/cpp:simutil_verilator",
     ],
-    copts = ["-Ibazel-bin/build.verilator_build/archive-verilator"]
 )

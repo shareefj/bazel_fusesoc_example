@@ -1,0 +1,125 @@
+{
+    // Always trim trailing whitespace when saving a file
+    "files.trimTrailingWhitespace": true,
+    // Force the indentation to obey the rules set below.
+    "editor.detectIndentation": false,
+    "[c]": {
+        "editor.tabSize": 2,
+        "editor.formatOnSave": true,
+    },
+    "[cpp]": {
+        "editor.tabSize": 2,
+        "editor.formatOnSave": true,
+    },
+    "[verilog]": {
+        "editor.tabSize": 2
+    },
+    "[systemverilog]": {
+        "editor.tabSize": 2
+    },
+    "[cpp]": {
+        "editor.tabSize": 2
+    },
+    "[systemrdl]": {
+        "editor.tabSize": 4
+    },
+    // Set default tab spacing to 4 spaces
+    "editor.tabSize": 4,
+    // Force language detection to be on.  Don't know why this used to work and now doesn't. Bug in 1.62.0?
+    "workbench.editor.languageDetection": true,
+    // Set up file associations for non-default file extensions
+    "files.associations": {
+        "*.core": "yaml",
+        "*.mk": "makefile",
+        "*.xdc": "tcl",
+        "Makefile.sw": "makefile",
+        "Makefile.inc": "makefile",
+        "array": "cpp",
+        "bit": "cpp",
+        "*.tcc": "cpp",
+        "cctype": "cpp",
+        "chrono": "cpp",
+        "clocale": "cpp",
+        "cmath": "cpp",
+        "compare": "cpp",
+        "concepts": "cpp",
+        "cstdint": "cpp",
+        "cstdio": "cpp",
+        "cstdlib": "cpp",
+        "cstring": "cpp",
+        "ctime": "cpp",
+        "cwchar": "cpp",
+        "cwctype": "cpp",
+        "deque": "cpp",
+        "map": "cpp",
+        "unordered_map": "cpp",
+        "vector": "cpp",
+        "exception": "cpp",
+        "functional": "cpp",
+        "initializer_list": "cpp",
+        "iosfwd": "cpp",
+        "iostream": "cpp",
+        "istream": "cpp",
+        "limits": "cpp",
+        "memory": "cpp",
+        "new": "cpp",
+        "numbers": "cpp",
+        "ostream": "cpp",
+        "ratio": "cpp",
+        "sstream": "cpp",
+        "stdexcept": "cpp",
+        "streambuf": "cpp",
+        "string": "cpp",
+        "string_view": "cpp",
+        "system_error": "cpp",
+        "type_traits": "cpp",
+        "tuple": "cpp",
+        "typeinfo": "cpp",
+        "utility": "cpp",
+        ".sv": "systemverilog",
+        ".svh": "systemverilog",
+        "iomanip": "cpp"
+    },
+    // Don't show the following files/directories in the explorer view
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/__pycache__": true,
+    },
+    // Exclude larger directories from being watched; if the OS's
+    // max_inotify_watches value is small, then VSCode fails to be
+    // able to watch files for modifications. This behaviour changes
+    // in release 1.62.0 with a naitive watcher.  See release notes.
+    "files.watcherExclude": {
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/node_modules/**": true,
+        "**/.hg/store/**": true,
+        "**/__pycache__": true,
+        "**/build": true,
+        "**/xcelium.d": true,
+        "**/venv": true,
+        "**/.venv": true,
+        "**/docs": true,
+        "**/vendor/arm": true,
+    },
+    // The default here is true which means the PATH gets munged:
+    // https://github.com/microsoft/vscode/issues/70248
+    "terminal.integrated.inheritEnv": false,
+    // Disable venv's from being auto activated
+    "python.terminal.activateEnvironment": false,
+    //
+    "terminal.integrated.profiles.linux": {
+        "bash": {
+            "path": "bash",
+            "icon": "terminal-bash",
+            "args": [
+                "-l"
+            ]
+        },
+    },
+    "restructuredtext.confPath": "${workspaceFolder}/hw/ip/genesee_asic/docs/project_overview/source"
+}

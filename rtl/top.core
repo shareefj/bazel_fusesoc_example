@@ -1,0 +1,105 @@
+CAPI=2:
+name: idex:test:top
+description: Testcase for Bazel build flow
+
+filesets:
+  files_rtl_verilator:
+    files:
+      - top.sv: { file_type: systemVerilogSource }
+
+  files_cc_verilator:
+    depend:
+      - lowrisc:dv_verilator:simutil_verilator
+    files:
+      - top.cc: { file_type: cppSource }
+
+targets:
+  default: &default
+    filesets:
+      - files_rtl_verilator
+    toplevel: top
+
+  sim:
+    <<: *default
+    default_tool: verilator
+    filesets_append:
+      - files_cc_verilator
+    tools:
+      verilator:
+        mode: cc
+        verilator_options:
+          # - '-sv'
+          # Enable assertions (note: limited syntax support)
+          - '--assert'
+          # Force Verilator to trigger an edge for X->1 and X->0 transitions
+          - '-x-initial-edge'
+          # Enable FST tracing
+          - '--trace'
+          - '--trace-fst' # this requires -DVM_TRACE_FMT_FST in CFLAGS below!
+          # Remove FST options below for VCD tracing
+          - '--trace-structs'
+          - '--trace-params'
+          - '--trace-max-array 1024'
+          - '--unroll-count 512'
+          # Users can override this setting by appending e.g.
+          # --verilator_options '--threads 2'
+          # to the end of the fusesoc invocation when compiling the simulation.
+          - '--threads 4'
+          # TODO: Variable expansion depends on edalize internals. Find better solution.
+          #       (Applies to LDFLAGS expansion below as well)
+          - '-CFLAGS "$(CFLAGS_FOR_BUILD) -std=c++11 -Wall -DVM_TRACE_FMT_FST -DVL_USER_STOP -DTOPLEVEL_NAME=top"'
+          - '-LDFLAGS "$(LDFLAGS_FOR_BUILD) -pthread -lutil -lelf"'
+          # REVISIT: clean up once all warnings are fixed
+          # - '-Wall'
+          - '-Wno-fatal'
+          # - '-Wno-lint'
+          # - '-Wno-style'
+          - '-Wno-STMTDLY'
+          - '-Wno-UNOPTFLAT'
+          - '-Wno-UNPACKED'
+          - '-Wno-WIDTHCONCAT'
+          - '-Wno-TIMESCALEMOD'
+          - '-Wno-UNUSED'
+          # - '-debug'
+
+  archive:
+    <<: *default
+    default_tool: verilator
+    tools:
+      verilator:
+        mode: cc
+        exe: false
+        verilator_options:
+          # - '-sv'
+          # Enable assertions (note: limited syntax support)
+          - '--assert'
+          # Force Verilator to trigger an edge for X->1 and X->0 transitions
+          - '-x-initial-edge'
+          # Enable FST tracing
+          - '--trace'
+          - '--trace-fst' # this requires -DVM_TRACE_FMT_FST in CFLAGS below!
+          # Remove FST options below for VCD tracing
+          - '--trace-structs'
+          - '--trace-params'
+          - '--trace-max-array 1024'
+          - '--unroll-count 512'
+          # Users can override this setting by appending e.g.
+          # --verilator_options '--threads 2'
+          # to the end of the fusesoc invocation when compiling the simulation.
+          - '--threads 4'
+          # TODO: Variable expansion depends on edalize internals. Find better solution.
+          #       (Applies to LDFLAGS expansion below as well)
+          - '-CFLAGS "$(CFLAGS_FOR_BUILD) -std=c++11 -Wall -DVM_TRACE_FMT_FST -DVL_USER_STOP -DTOPLEVEL_NAME=top"'
+          - '-LDFLAGS "$(LDFLAGS_FOR_BUILD) -pthread -lutil -lelf"'
+          # REVISIT: clean up once all warnings are fixed
+          # - '-Wall'
+          - '-Wno-fatal'
+          # - '-Wno-lint'
+          # - '-Wno-style'
+          - '-Wno-STMTDLY'
+          - '-Wno-UNOPTFLAT'
+          - '-Wno-UNPACKED'
+          - '-Wno-WIDTHCONCAT'
+          - '-Wno-TIMESCALEMOD'
+          - '-Wno-UNUSED'
+          # - '-debug'
